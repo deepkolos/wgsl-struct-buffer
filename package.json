@@ -19,13 +19,19 @@
       "types": "./dist/StructBuffer.d.ts"
     }
   },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "bench": "vitest bench",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm build"
   },
   "sideEffects": ["./src/DataView.ts"],
   "devDependencies": {

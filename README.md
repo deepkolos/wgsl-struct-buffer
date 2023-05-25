@@ -4,6 +4,51 @@
 
 # 使用
 
+```sh
+> pnpm i -S wgsl-struct-buffer
+```
+
+```ts
+import { wgsl } from 'wgsl-struct-buffer';
+
+const { view, buffer, struct } = new wgsl.StructBuffer({
+  ambient: 'vec3f',
+  lightCount: 'u32',
+  lights: [
+    {
+      position: 'vec3f',
+      range: 'f32',
+      color: 'vec3f',
+      intensity: 'f32',
+    },
+    4,
+  ],
+});
+view.ambient.set([0, 0, 0]);
+view.lightCount = 4;
+view.lights.forEach(light => {
+  light.position.set([1, 2, 3]);
+  light.color.set([1, 1, 1]);
+  light.range = 10;
+  light.intensity = 0.8;
+});
+console.log(buffer);
+console.log(wgsl.stringifyStruct('LightInfo', struct));
+/** output
+struct LightInfo_lights {
+  position: vec3f,
+  range: f32,
+  color: vec3f,
+  intensity: f32,
+};
+struct LightInfo {
+  ambient: vec3f,
+  lightCount: u32,
+  lights: array<LightInfo_lights, 4>,
+};
+*/
+```
+
 # 赞助
 
 如果项目对您有帮助，欢迎打赏
