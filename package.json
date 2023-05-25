@@ -1,0 +1,41 @@
+{
+  "name": "wgsl-struct-buffer",
+  "version": "0.0.0",
+  "description": "struct buffer view for wgsl's struct",
+  "author": "deepkolos@qq.com",
+  "keywords": [
+    "struct",
+    "wgsl",
+    "bufferview"
+  ],
+  "type": "module",
+  "main": "./dist/wgsl-struct-buffer.umd.cjs",
+  "module": "./dist/wgsl-struct-buffer.js",
+  "types": "./dist/StructBuffer.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/wgsl-struct-buffer.js",
+      "require": "./dist/wgsl-struct-buffer.umd.cjs",
+      "types": "./dist/StructBuffer.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "bench": "vitest bench",
+    "coverage": "vitest run --coverage"
+  },
+  "sideEffects": ["./src/DataView.ts"],
+  "devDependencies": {
+    "@webgpu/types": "latest",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^0.31.1"
+  },
+  "dependencies": {
+    "@petamoriken/float16": "^3.8.0"
+  }
+}
