@@ -1,6 +1,21 @@
 # wgsl-struct-buffer
 
-一个给`WGSL's Struct`提供`BufferView`的小工具
+一个给`WGSL's Struct`提供`BufferView`的小工具, 方便 ComputeShader 中复杂数据结构表示和编辑
+
+- 支持 f16(虽然还没有浏览器支持 shader-f16 扩展)
+- 支持 Struct/Array 嵌套, 
+- 支持 ArrayRumtimeSized (需要位于Struct末尾, 且只有一个)
+- TS 类型友好, 支持类型检查+提示
+
+```ts
+type PrimitiveNumber = 'f16' | 'f32' | 'u32' | 'i32';
+type PrimitiveVector = `${'vec2' | 'vec3' | 'vec4'}${'f' | 'h' | 'u' | 'i'}`;
+type PrimitiveMatrix = `${'mat3x3' | 'mat4x4'}${'f' | 'h'}`;
+type PrimitiveTypedArray = PrimitiveVector | PrimitiveMatrix;
+type Primitive = PrimitiveNumber | PrimitiveTypedArray;
+type Array = [struct: Struct, length: number, runtimeSized?: boolean];
+type Struct = { [k: string]: Primitive | Array | Struct };
+```
 
 # 使用
 
@@ -12,8 +27,8 @@
 import { wgsl } from 'wgsl-struct-buffer';
 
 const { view, buffer, struct } = new wgsl.StructBuffer({
-  ambient: 'vec3f',
-  lightCount: 'u32',
+  ambient: 'vec3f', // vec{2,3,4}{f,h,u,i}
+  lightCount: 'u32', // f32, f16, u32, i32
   lights: [
     {
       position: 'vec3f',
