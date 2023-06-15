@@ -21,7 +21,6 @@ export namespace wgsl {
   export enum PrimitiveToGPUVertexFormat {
     u32 = 'uint32',
     i32 = 'sint32',
-    f16 = 'float16',
     f32 = 'float32',
     vec2f = 'float32x2',
     vec3f = 'float32x3',
@@ -29,6 +28,12 @@ export namespace wgsl {
     vec2h = 'float16x2',
     vec3h = 'float16x3',
     vec4h = 'float16x4',
+    vec2i = 'int32x2',
+    vec3i = 'int32x3',
+    vec4i = 'int32x4',
+    vec2u = 'uint32x2',
+    vec3u = 'uint32x3',
+    vec4u = 'uint32x4',
   }
 
   const PrimitiveTypedArrayLenMap = Object.freeze({
@@ -103,7 +108,7 @@ export namespace wgsl {
   };
   export type Array = [struct: Struct, length: number, runtimeSized?: boolean];
   export type Struct = { [k: string]: Primitive | Array | Struct };
-  export type PlainStruct = { [k: string]: Exclude<Primitive, PrimitiveMatrix> };
+  export type PlainStruct = { [k: string]: Exclude<Primitive, PrimitiveMatrix | 'f16'> };
   export type StructView<T extends Struct> = {
     [K in keyof T]: T[K] extends Struct
       ? StructView<T[K]>
