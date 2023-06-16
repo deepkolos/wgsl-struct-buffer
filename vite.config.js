@@ -9,7 +9,7 @@ export default defineConfig({
     minify: false,
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'src/StructBuffer.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'StructBuffer',
       // the proper extensions will be added
       fileName: 'wgsl-struct-buffer',

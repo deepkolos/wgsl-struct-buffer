@@ -3,8 +3,8 @@
 一个给`WGSL's Struct`提供`BufferView`的小工具, 方便 ComputeShader 中复杂数据结构表示和编辑
 
 - 支持 f16(虽然还没有浏览器支持 shader-f16 扩展)
-- 支持 Struct/Array 嵌套, 
-- 支持 ArrayRumtimeSized (需要位于Struct末尾, 且只有一个)
+- 支持 Struct/Array 嵌套,
+- 支持 ArrayRumtimeSized (需要位于 Struct 末尾, 且只有一个)
 - TS 类型友好, 支持类型检查+提示
 
 ```ts
@@ -64,6 +64,15 @@ struct LightInfo {
 */
 ```
 
+启用`f16`
+
+```ts
+import { wgsl, setPolyfill } from 'wgsl-struct-buffer';
+import * as polyfill from '@petamoriken/float16';
+
+setPolyfill(polyfill);
+```
+
 # 赞助
 
 如果项目对您有帮助，欢迎打赏
@@ -74,4 +83,4 @@ struct LightInfo {
 
 # License
 
-MIT 欢迎学习交流👏🏻
+MIT 欢迎学习交流 👏🏻

@@ -1,6 +1,9 @@
 import { device, initContext, queue, createBuffer } from './context';
-import { wgsl } from '../src/StructBuffer';
+import { wgsl, setPolyfill } from '../src';
+import * as polyfill from '@petamoriken/float16';
 import COMPUTE_SHADER from './struct-buffer.comp.wgsl?raw';
+
+setPolyfill(polyfill);
 
 function arrayEq(a: ArrayLike<number>, b: ArrayLike<number>) {
   for (let i = 0; i < a.length; i++) {

@@ -1,5 +1,4 @@
-import './DataView';
-import { Float16Array } from '@petamoriken/float16';
+import type { Float16Array, Float16ArrayConstructor } from '@petamoriken/float16';
 
 type NoEmptyRecord<T> = T & (keyof T extends never ? 'No empty object' : {});
 
@@ -71,12 +70,12 @@ export namespace wgsl {
     mat4x4h: { size: 32, align: 8 },
   });
 
-  const SuffixTypedArrayMap = Object.freeze({
-    h: Float16Array,
+  export const SuffixTypedArrayMap = {
+    h: undefined as unknown as Float16ArrayConstructor,
     f: Float32Array,
     u: Uint32Array,
     i: Int32Array,
-  } as const);
+  } as const;
 
   export type PrimitiveNumber = 'f16' | 'f32' | 'u32' | 'i32';
   export type PrimitiveVector = `${'vec2' | 'vec3' | 'vec4'}${'f' | 'h' | 'u' | 'i'}`;

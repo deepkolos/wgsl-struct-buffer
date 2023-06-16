@@ -1,5 +1,8 @@
-import { wgsl } from './StructBuffer';
+import { wgsl, setPolyfill } from './index';
 import { expect, test } from 'vitest';
+import * as polyfill from '@petamoriken/float16';
+
+setPolyfill(polyfill);
 
 test('StructBuffer simple', () => {
   const struct = new wgsl.StructBuffer({

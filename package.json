@@ -1,6 +1,6 @@
 {
   "name": "wgsl-struct-buffer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "struct buffer view for wgsl's struct",
   "author": "deepkolos@qq.com",
   "keywords": [
@@ -33,7 +33,7 @@
     "coverage": "vitest run --coverage",
     "prepublishOnly": "pnpm build"
   },
-  "sideEffects": ["./src/DataView.ts"],
+  "sideEffects": false,
   "devDependencies": {
     "@webgpu/types": "latest",
     "typescript": "^5.0.2",
